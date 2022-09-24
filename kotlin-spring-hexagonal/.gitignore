@@ -1,9 +1,33 @@
+### Java template
+# Compiled class file
+*.class
+
+# Log file
+*.log
+
+# BlueJ files
+*.ctxt
+
+# Mobile Tools for Java (J2ME)
+.mtj.tmp/
+
+# Package Files #
+*.jar
+*.war
+*.nar
+*.ear
+*.zip
+*.tar.gz
+*.rar
+
+# virtual machine crash logs, see http://www.java.com/en/download/help/error_hotspot.xml
+hs_err_pid*
+
 ### JetBrains template
 # Covers JetBrains IDEs: IntelliJ, RubyMine, PhpStorm, AppCode, PyCharm, CLion, Android Studio, WebStorm and Rider
 # Reference: https://intellij-support.jetbrains.com/hc/en-us/articles/206544839
 
 # User-specific stuff
-.idea/**
 .idea/**/workspace.xml
 .idea/**/tasks.xml
 .idea/**/usage.statistics.xml
@@ -14,6 +38,7 @@
 .idea/**/contentModel.xml
 
 # Sensitive or high-churn files
+.idea/**
 .idea/**/dataSources/
 .idea/**/dataSources.ids
 .idea/**/dataSources.local.xml
@@ -36,7 +61,7 @@
 # .idea/modules.xml
 # .idea/*.iml
 # .idea/modules
-*.iml
+# *.iml
 # *.ipr
 
 # CMake
@@ -113,6 +138,23 @@ $RECYCLE.BIN/
 # Windows shortcuts
 *.lnk
 
+### Gradle template
+.gradle
+**/build/
+!src/**/build/
+
+# Ignore Gradle GUI config
+gradle-app.setting
+
+# Avoid ignoring Gradle wrapper jar file (.jar files are usually ignored)
+!gradle-wrapper.jar
+
+# Cache of project
+.gradletasknamecache
+
+# # Work around https://youtrack.jetbrains.com/issue/IDEA-116898
+# gradle/wrapper/gradle-wrapper.properties
+
 ### macOS template
 # General
 .DS_Store
@@ -141,7 +183,19 @@ Network Trash Folder
 Temporary Items
 .apdisk
 
+### Kotlin template
+# Compiled class file
+
+# Log file
+
+# BlueJ files
+
+# Mobile Tools for Java (J2ME)
+
+# Package Files #
+
+# virtual machine crash logs, see http://www.java.com/en/download/help/error_hotspot.xml
+
+/.gradle/
 /.idea/
-/kotlin-spring-hexagonal/.gradle/
-/kotlin-spring-hexagonal/.idea/
-/kotlin-spring-hexagonal/build/
+/build/

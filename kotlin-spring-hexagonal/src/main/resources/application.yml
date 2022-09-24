@@ -1,0 +1,48 @@
+spring:
+  application:
+    name: "boilerplate"
+  lifecycle:
+    timeout-per-shutdown-phase: 30s
+  datasource:
+    url: jdbc:postgresql://localhost:5432/boilerplate
+    username: postgres
+    password: postgres
+    driver-class-name: "org.postgresql.Driver"
+  jpa:
+    hibernate:
+      ddl-auto: validate
+    open-in-view: false
+  liquibase:
+    enabled: true
+    change-log: classpath:/db/liquibase-changelog.xml
+  cache:
+    type: redis
+  redis:
+    host: localhost
+    port: 6379
+
+server:
+  servlet:
+    context-path: /api
+  shutdown: graceful
+  tomcat:
+    threads:
+      max: 200
+
+management:
+  endpoint:
+    health:
+      probes:
+        enabled: true
+  health:
+    readinessState:
+      enabled: true
+    livenessState:
+      enabled: true
+    mail:
+      enabled: false
+  endpoints:
+    web:
+      base-path: /actuator
+  server:
+    port: 8081
