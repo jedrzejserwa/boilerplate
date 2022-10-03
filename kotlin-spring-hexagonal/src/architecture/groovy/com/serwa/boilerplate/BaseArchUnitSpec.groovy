@@ -1,4 +1,4 @@
-package con.serwa.boilerplate
+package com.serwa.boilerplate
 
 import com.tngtech.archunit.core.domain.JavaClasses
 import com.tngtech.archunit.core.importer.ClassFileImporter

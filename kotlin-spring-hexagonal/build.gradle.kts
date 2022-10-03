@@ -12,6 +12,7 @@ plugins {
 	id("io.spring.dependency-management") version "1.0.11.RELEASE"
 
 	id("groovy")
+	id("codenarc")
 	id("com.coditory.integration-test") version "1.3.0"
 }
 
@@ -45,9 +46,6 @@ val architectureTest = task<Test>("architectureTest") {
 	classpath = sourceSets["architecture"].runtimeClasspath
 	shouldRunAfter("test")
 }
-
-tasks.check { dependsOn(architectureTest) }
-tasks.testAll { dependsOn(architectureTest) }
 
 kotlin.target.compilations.getByName("architecture") {
 	associateWith(target.compilations.getByName("test"))
@@ -134,6 +132,11 @@ tasks.withType<KotlinCompile> {
 	}
 }
 
+codenarc {
+	reportFormat = "console"
+	configFile = file("${project.rootDir}/linter/codenarc.groovy")
+}
+
 val ktlintOutputDir = "${project.buildDir}/reports/ktlint/"
 val ktlintInputFiles = project.fileTree(mapOf("dir" to "src", "include" to "**/*.kt"))
 
@@ -156,3 +159,10 @@ val ktlintFormat by tasks.creating(JavaExec::class) {
 	mainClass.set("com.pinterest.ktlint.Main")
 	args = listOf("-F", "src/**/*.kt")
 }
+
+tasks.register<CodeNarc>("codenarcAll") {
+	dependsOn("codenarcTest", "codenarcIntegration", "codenarcArchitecture")
+}
+
+tasks.check { dependsOn(architectureTest) }
+tasks.testAll { dependsOn(architectureTest) }

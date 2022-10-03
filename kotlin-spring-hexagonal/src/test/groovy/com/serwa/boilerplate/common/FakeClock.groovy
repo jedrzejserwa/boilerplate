@@ -8,7 +8,7 @@ import java.time.format.DateTimeFormatter
 
 class FakeClock extends Clock {
 
-    static final INSTANCE = new FakeClock()
+    static final FakeClock INSTANCE = new FakeClock()
 
     private static final String FIXED_TIME = "1994-12-05 00:00:00" // Monday
 

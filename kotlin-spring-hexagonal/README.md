@@ -44,7 +44,19 @@ In case of running test containers, docker is required to be running
 ./gradlew testAll
 ```
 
-### Ktlint check
+### Groovy linter
+```
+./gradlew codenarcTest
+./gradlew codenarcIntegration
+./gradlew codenarcArchitecture
+```
+
+or just
+```
+./gradlew codenarcAll
+```
+
+### Kotlin linter
 ```
 ./gradlew ktlintCheck
 ```

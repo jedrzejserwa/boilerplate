@@ -14,7 +14,7 @@ class FixedTimeConfiguration {
 
 	public static final String FIXED_DAY = "1994-12-05"
 	public static final String FIXED_TIME = "$FIXED_DAY 00:00:00"
-	private static final UTC_ZONE = ZoneId.of("UTC")
+	private static final ZoneId UTC_ZONE = ZoneId.of("UTC")
 
 	@Bean
 	Clock clock(Environment environment) {
