@@ -4,6 +4,8 @@ import com.serwa.boilerplate.common.configuration.postresql.TestContainersPostgr
 import com.serwa.boilerplate.common.configuration.redis.TestContainersRedisConfiguration
 import com.serwa.boilerplate.common.configuration.rest.RestitoConfiguration
 import com.serwa.boilerplate.common.configuration.time.FixedTimeConfiguration
+import com.serwa.boilerplate.palindrome.infrastructure.adapters.feign.NbpApiAbility
+import com.xebialabs.restito.server.StubServer
 import groovy.json.JsonBuilder
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc
@@ -33,7 +35,7 @@ import javax.transaction.Transactional
 		TestContainersPostgresqlConfiguration.Initializer.class
 	]
 )
-abstract class IntegrationSpec extends Specification {
+abstract class IntegrationSpec extends Specification implements NbpApiAbility {
 
 	@Autowired
 	protected ApplicationContext applicationContext
@@ -43,6 +45,11 @@ abstract class IntegrationSpec extends Specification {
 
 	def cleanup() {
 		RestitoConfiguration.cleanup()
+	}
+
+	@Override
+	StubServer stubServer() {
+		return RestitoConfiguration.getStubServer()
 	}
 
 	protected String asJson(Map map) {

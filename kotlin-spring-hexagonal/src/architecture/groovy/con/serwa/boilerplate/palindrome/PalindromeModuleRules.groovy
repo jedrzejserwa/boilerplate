@@ -20,14 +20,16 @@ class PalindromeModuleRules extends BaseArchUnitSpec {
 				"Infrastructure Adapters",
 				"Infrastructure Config"
 			)
-				.whereLayer("Domain Ports")
+				.whereLayer("Domain Ports").mayOnlyBeAccessedByLayers(
+				"Domain",
+				"Application",
+				"Infrastructure Adapters",
+				"Infrastructure Config",
+			)
+				.whereLayer("Infrastructure Config")
 				.mayOnlyBeAccessedByLayers(
-					"Domain",
-					"Application",
-					"Infrastructure Adapters",
-					"Infrastructure Config",
+					"Infrastructure Adapters"
 				)
-				.whereLayer("Infrastructure Config").mayNotBeAccessedByAnyLayer()
 		expect:
 			check(rule)
 	}

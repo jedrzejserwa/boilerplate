@@ -47,6 +47,7 @@ val architectureTest = task<Test>("architectureTest") {
 }
 
 tasks.check { dependsOn(architectureTest) }
+tasks.testAll { dependsOn(architectureTest) }
 
 kotlin.target.compilations.getByName("architecture") {
 	associateWith(target.compilations.getByName("test"))
@@ -69,10 +70,11 @@ val logbackVersion = "1.2.11"
 val groovyAllVersion = "3.0.12"
 val spockBomVersion = "2.1-groovy-3.0"
 val restitoVersion = "1.0.0"
+val grizzlyVersion = "2.3.25"
 val testContainersVersion = "1.17.3"
 val jsonPathAssertionVersion = "2.7.0"
-val ktlintVersion = "0.45.2"
 val archunitVersion = "0.17.0"
+val ktlintVersion = "0.45.2"
 
 dependencies {
 	implementation("org.jetbrains.kotlin:kotlin-reflect")
@@ -108,6 +110,7 @@ dependencies {
 	integrationImplementation("org.testcontainers:postgresql:")
 
 	integrationImplementation("com.xebialabs.restito:restito:$restitoVersion")
+	integrationImplementation("org.glassfish.grizzly:grizzly-http-server:$grizzlyVersion") // restito dependency
 	integrationImplementation("com.jayway.jsonpath:json-path:$jsonPathAssertionVersion")
 
 	architectureImplementation("com.tngtech.archunit:archunit:$archunitVersion")
