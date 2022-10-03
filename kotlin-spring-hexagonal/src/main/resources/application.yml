@@ -46,3 +46,18 @@ management:
       base-path: /actuator
   server:
     port: 8081
+
+feign:
+  httpclient:
+    maxConnections: ${server.tomcat.threads.max}
+    maxConnectionsPerRoute: ${server.tomcat.threads.max}
+  okhttp:
+    enabled: true
+  hystrix:
+    enabled: false
+  nbpApi:
+    url: "http://api.nbp.pl"
+    connectionTimeoutMillis: 200
+    readTimeoutMillis: 500
+    maxIdleConnections: 10
+    keepAliveDurationMinutes: 5

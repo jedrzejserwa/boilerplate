@@ -1,5 +1,8 @@
 package com.serwa.boilerplate
 
+import com.serwa.boilerplate.common.configuration.postresql.TestContainersPostgresqlConfiguration
+import com.serwa.boilerplate.common.configuration.redis.TestContainersRedisConfiguration
+import com.serwa.boilerplate.common.configuration.rest.RestitoConfiguration
 import com.serwa.boilerplate.common.configuration.time.FixedTimeConfiguration
 import groovy.json.JsonBuilder
 import org.springframework.beans.factory.annotation.Autowired
@@ -19,10 +22,15 @@ import javax.transaction.Transactional
 @ActiveProfiles(profiles = ["integration"])
 @ContextConfiguration(
 	classes = [
-		FixedTimeConfiguration.class
+		FixedTimeConfiguration.class,
+		RestitoConfiguration.class,
+		TestContainersRedisConfiguration.class,
+		TestContainersPostgresqlConfiguration.class
 	],
 	initializers = [
-
+		RestitoConfiguration.Initializer.class,
+		TestContainersRedisConfiguration.Initializer.class,
+		TestContainersPostgresqlConfiguration.Initializer.class
 	]
 )
 abstract class IntegrationSpec extends Specification {
@@ -32,6 +40,10 @@ abstract class IntegrationSpec extends Specification {
 
 	@Autowired
 	protected MockMvc mvc
+
+	def cleanup() {
+		RestitoConfiguration.cleanup()
+	}
 
 	protected String asJson(Map map) {
 		return new JsonBuilder(map).toPrettyString()
