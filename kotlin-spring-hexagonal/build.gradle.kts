@@ -14,6 +14,8 @@ plugins {
 	id("groovy")
 	id("codenarc")
 	id("com.coditory.integration-test") version "1.3.0"
+
+	id("com.google.cloud.tools.jib") version "3.2.1"
 }
 
 group = "com.serwa.boilerplate"

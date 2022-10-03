@@ -65,3 +65,8 @@ or just
 ```
 ./gradlew ktlintFormat
 ```
+
+### Build docker image
+```
+./gradlew clean jibDockerBuild --image=kotlin-spring-hexagonal:0.1.0
+```
