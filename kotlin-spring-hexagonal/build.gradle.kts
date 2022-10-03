@@ -3,16 +3,16 @@ import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
 val ktlint: Configuration by configurations.creating
 
 plugins {
-    id("application")
+	id("application")
 
-    kotlin("jvm") version "1.7.10"
-    kotlin("plugin.spring") version "1.6.10"
+	kotlin("jvm") version "1.7.10"
+	kotlin("plugin.spring") version "1.6.10"
 
-    id("org.springframework.boot") version "2.6.6"
-    id("io.spring.dependency-management") version "1.0.11.RELEASE"
+	id("org.springframework.boot") version "2.6.6"
+	id("io.spring.dependency-management") version "1.0.11.RELEASE"
 
-    id("groovy")
-    id("com.coditory.integration-test") version "1.3.0"
+	id("groovy")
+	id("com.coditory.integration-test") version "1.3.0"
 }
 
 group = "com.serwa.boilerplate"
@@ -20,7 +20,37 @@ version = "0.1.0"
 java.sourceCompatibility = JavaVersion.VERSION_11
 
 repositories {
-    mavenCentral()
+	mavenCentral()
+}
+
+sourceSets {
+	create("architecture") {
+		compileClasspath += sourceSets.test.get().output
+		runtimeClasspath += sourceSets.test.get().output
+	}
+}
+
+val architectureImplementation: Configuration by configurations.getting {
+	extendsFrom(configurations.testImplementation.get())
+}
+
+val architectureRuntimeOnly: Configuration by configurations.getting {
+	extendsFrom(configurations.testRuntimeOnly.get())
+}
+
+val architectureTest = task<Test>("architectureTest") {
+	description = "Runs architecture tests."
+	group = "verification"
+	testClassesDirs = sourceSets["architecture"].output.classesDirs
+	classpath = sourceSets["architecture"].runtimeClasspath
+	shouldRunAfter("test")
+}
+
+tasks.check { dependsOn(architectureTest) }
+
+kotlin.target.compilations.getByName("architecture") {
+	associateWith(target.compilations.getByName("test"))
+	associateWith(target.compilations.getByName("main"))
 }
 
 extra["springCloudVersion"] = "2021.0.4"
@@ -42,6 +72,7 @@ val restitoVersion = "1.0.0"
 val testContainersVersion = "1.17.3"
 val jsonPathAssertionVersion = "2.7.0"
 val ktlintVersion = "0.45.2"
+val archunitVersion = "0.17.0"
 
 dependencies {
 	implementation("org.jetbrains.kotlin:kotlin-reflect")
@@ -76,6 +107,8 @@ dependencies {
 
 	integrationImplementation("com.xebialabs.restito:restito:$restitoVersion")
 	integrationImplementation("com.jayway.jsonpath:json-path:$jsonPathAssertionVersion")
+
+	architectureImplementation("com.tngtech.archunit:archunit:$archunitVersion")
 
 	ktlint("com.pinterest:ktlint:$ktlintVersion") {
 		attributes {
