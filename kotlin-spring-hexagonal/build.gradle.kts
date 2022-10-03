@@ -62,7 +62,7 @@ dependencyManagement {
 
 val zalandoProblemVersion = "0.27.0"
 val postgresqlVersion = "42.5.0"
-val liquibaseVersion = "4.16.0"
+val liquibaseVersion = "4.16.1"
 val kotlinLoggingVersion = "2.1.23"
 val logbackVersion = "1.2.11"
 val groovyAllVersion = "3.0.12"
