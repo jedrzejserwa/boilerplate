@@ -9,25 +9,25 @@ import org.testcontainers.containers.PostgreSQLContainer
 @TestConfiguration
 class TestContainersPostgresqlConfiguration {
 
-    private static final PostgreSQLContainer postgreSQLContainer
+	private static final PostgreSQLContainer postgreSQLContainer
 
-    static {
-        postgreSQLContainer = new PostgreSQLContainer("postgres:14.2")
-                .withDatabaseName("boilerplate-${UUID.randomUUID()}")
-                .withUsername("postgres")
-                .withPassword("postgres")
+	static {
+		postgreSQLContainer = new PostgreSQLContainer("postgres:14.2")
+			.withDatabaseName("boilerplate-${UUID.randomUUID()}")
+			.withUsername("postgres")
+			.withPassword("postgres")
 
-        postgreSQLContainer.start()
-    }
+		postgreSQLContainer.start()
+	}
 
-    static class Initializer implements ApplicationContextInitializer<ConfigurableApplicationContext> {
+	static class Initializer implements ApplicationContextInitializer<ConfigurableApplicationContext> {
 
-        void initialize(ConfigurableApplicationContext configurableApplicationContext) {
-            TestPropertyValues.of(
-                    "spring.datasource.url=" + postgreSQLContainer.getJdbcUrl(),
-                    "spring.datasource.username=" + postgreSQLContainer.getUsername(),
-                    "spring.datasource.password=" + postgreSQLContainer.getPassword()
-            ).applyTo(configurableApplicationContext.getEnvironment())
-        }
-    }
+		void initialize(ConfigurableApplicationContext configurableApplicationContext) {
+			TestPropertyValues.of(
+				"spring.datasource.url=" + postgreSQLContainer.getJdbcUrl(),
+				"spring.datasource.username=" + postgreSQLContainer.getUsername(),
+				"spring.datasource.password=" + postgreSQLContainer.getPassword()
+			).applyTo(configurableApplicationContext.getEnvironment())
+		}
+	}
 }

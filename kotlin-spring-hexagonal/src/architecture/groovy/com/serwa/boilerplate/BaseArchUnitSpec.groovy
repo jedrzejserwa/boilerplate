@@ -12,7 +12,7 @@ abstract class BaseArchUnitSpec extends Specification {
 		.withImportOption(new ImportOption.DoNotIncludeTests())
 		.importPackages("com.serwa")
 
-    protected void check(ArchRule rule) {
-        rule.check(allClasses)
-    }
+	protected void check(ArchRule rule) {
+		rule.check(allClasses)
+	}
 }

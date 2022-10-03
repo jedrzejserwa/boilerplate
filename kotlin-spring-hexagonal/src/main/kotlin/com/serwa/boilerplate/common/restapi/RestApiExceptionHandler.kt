@@ -8,7 +8,6 @@ import org.springframework.web.context.request.ServletWebRequest
 import org.springframework.web.context.request.WebRequest
 import org.zalando.problem.Problem
 import org.zalando.problem.Status
-import java.lang.IllegalArgumentException
 
 @RestControllerAdvice
 class RestApiExceptionHandler {

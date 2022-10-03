@@ -1,7 +1,7 @@
 package com.serwa.boilerplate.palindrome
 
-import com.tngtech.archunit.lang.ArchRule
 import com.serwa.boilerplate.BaseArchUnitSpec
+import com.tngtech.archunit.lang.ArchRule
 
 import static com.tngtech.archunit.library.Architectures.layeredArchitecture
 

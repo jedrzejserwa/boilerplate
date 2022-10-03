@@ -8,11 +8,11 @@ import com.xebialabs.restito.server.StubServer
 import static com.xebialabs.restito.semantics.Action.stringContent
 
 interface RestitoAware {
-    StubServer stubServer()
+	StubServer stubServer()
 
 	static final ObjectMapper mapper = new ObjectMapperConfiguration().objectMapper()
 
-	 default Action jsonResponse(Object object) {
+	default Action jsonResponse(Object object) {
 		return stringContent(mapper.writeValueAsString(object))
 	}
 }

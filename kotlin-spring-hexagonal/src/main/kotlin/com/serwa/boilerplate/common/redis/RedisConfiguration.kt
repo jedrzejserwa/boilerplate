@@ -12,15 +12,15 @@ import org.springframework.data.redis.serializer.GenericJackson2JsonRedisSeriali
 @EnableRedisRepositories
 class RedisConfiguration {
 
-    @Bean
-    fun redisTemplate(
-        redisConnectionFactory: RedisConnectionFactory,
-        objectMapper: ObjectMapper
-    ): RedisTemplate<Any, Any> {
-        val template: RedisTemplate<Any, Any> = RedisTemplate()
-        template.setConnectionFactory(redisConnectionFactory)
-        template.valueSerializer = GenericJackson2JsonRedisSerializer(objectMapper)
+	@Bean
+	fun redisTemplate(
+		redisConnectionFactory: RedisConnectionFactory,
+		objectMapper: ObjectMapper
+	): RedisTemplate<Any, Any> {
+		val template: RedisTemplate<Any, Any> = RedisTemplate()
+		template.setConnectionFactory(redisConnectionFactory)
+		template.valueSerializer = GenericJackson2JsonRedisSerializer(objectMapper)
 
-        return template
-    }
+		return template
+	}
 }
