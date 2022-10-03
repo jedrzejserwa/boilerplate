@@ -72,7 +72,7 @@ val grizzlyVersion = "2.3.25"
 val testContainersVersion = "1.17.3"
 val jsonPathAssertionVersion = "2.7.0"
 val archunitVersion = "0.23.1"
-val ktlintVersion = "0.45.2"
+val ktlintVersion = "0.47.1"
 
 dependencies {
 	implementation("org.jetbrains.kotlin:kotlin-reflect")
@@ -156,6 +156,7 @@ val ktlintFormat by tasks.creating(JavaExec::class) {
 
 	description = "Fix Kotlin code style deviations."
 	classpath = ktlint
+	jvmArgs = listOf("--add-opens=java.base/java.lang=ALL-UNNAMED")
 	mainClass.set("com.pinterest.ktlint.Main")
 	args = listOf("-F", "src/**/*.kt")
 }

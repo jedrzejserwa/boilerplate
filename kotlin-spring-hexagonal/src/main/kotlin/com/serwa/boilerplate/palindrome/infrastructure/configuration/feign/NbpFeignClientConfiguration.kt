@@ -22,7 +22,8 @@ class NbpFeignClientConfiguration {
 			.readTimeout(feignNbpApiProperties.readTimeoutMillis, TimeUnit.MILLISECONDS)
 			.connectionPool(
 				ConnectionPool(
-					feignNbpApiProperties.maxIdleConnections, feignNbpApiProperties.keepAliveDurationMinutes,
+					feignNbpApiProperties.maxIdleConnections,
+					feignNbpApiProperties.keepAliveDurationMinutes,
 					TimeUnit.MINUTES
 				)
 			)
