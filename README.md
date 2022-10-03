@@ -10,5 +10,9 @@ Single place for technology specific boilerplate used to speed up project setup
 
 [reference dir](./charts)
 
+## GitHub workflows
+
+[reference dir](./github/workflows)
+
 ## Licenses
 MIT - see [LICENSE](./LICENSE)
