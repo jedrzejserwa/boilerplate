@@ -71,7 +71,7 @@ val restitoVersion = "1.0.0"
 val grizzlyVersion = "2.3.25"
 val testContainersVersion = "1.17.3"
 val jsonPathAssertionVersion = "2.7.0"
-val archunitVersion = "0.17.0"
+val archunitVersion = "0.23.1"
 val ktlintVersion = "0.45.2"
 
 dependencies {
