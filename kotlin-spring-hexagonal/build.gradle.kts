@@ -60,6 +60,7 @@ dependencyManagement {
 	}
 }
 
+val okhttpVersion = "3.14.9"
 val zalandoProblemVersion = "0.27.0"
 val postgresqlVersion = "42.5.0"
 val liquibaseVersion = "4.16.1"
@@ -67,9 +68,9 @@ val kotlinLoggingVersion = "3.0.0"
 val logbackVersion = "1.2.11"
 val groovyAllVersion = "3.0.13"
 val spockBomVersion = "2.1-groovy-3.0"
+val testContainersVersion = "1.17.3"
 val restitoVersion = "1.0.0"
 val grizzlyVersion = "2.3.25"
-val testContainersVersion = "1.17.3"
 val jsonPathAssertionVersion = "2.7.0"
 val archunitVersion = "0.23.1"
 val ktlintVersion = "0.47.1"
@@ -79,12 +80,13 @@ dependencies {
 	implementation("org.jetbrains.kotlin:kotlin-stdlib-jdk8")
 
 	implementation("org.springframework.boot:spring-boot-starter-web")
+	implementation("org.springframework.boot:spring-boot-starter-actuator")
 	implementation("org.springframework.boot:spring-boot-starter-data-jpa")
 	implementation("org.springframework.boot:spring-boot-starter-data-redis")
 	implementation("org.springframework.boot:spring-boot-starter-validation")
 
 	implementation("org.springframework.cloud:spring-cloud-starter-openfeign")
-	implementation("io.github.openfeign:feign-okhttp:11.8")
+	implementation("com.squareup.okhttp3:okhttp:$okhttpVersion")
 	implementation("org.zalando:problem-spring-web:$zalandoProblemVersion")
 
 	implementation("org.postgresql:postgresql:$postgresqlVersion")
