@@ -1,0 +1,118 @@
+# Default values for k8s-helm-example.
+# This is a YAML-formatted file.
+# Declare variables to be passed into your templates.
+
+namespace: kotlin-spring-hexagonal
+
+replicaCount: 1
+
+image:
+  repository: ghcr.io/jedrzejserwa/boilerplate
+  pullPolicy: Always
+  tag: "latest"
+
+imagePullSecret:
+  dockerconfigjson: ""
+
+imagePullSecrets: []
+
+nameOverride: "kotlin-spring-hexagonal"
+fullnameOverride: "kotlin-spring-hexagonal"
+
+serviceAccount:
+  create: true
+  annotations: {}
+  name: ""
+
+podAnnotations: { }
+
+podSecurityContext:
+  runAsUser: 10001
+  seccompProfile:
+    type: RuntimeDefault
+
+securityContext:
+  allowPrivilegeEscalation: false
+  runAsNonRoot: true
+  runAsUser: 10001
+  runAsGroup: 3000
+  capabilities:
+    drop:
+      - ALL
+  readOnlyRootFilesystem: false
+
+service:
+  type: ClusterIP
+  port: 8080
+
+autoscaling:
+  enabled: false
+
+resources:
+  limits:
+    cpu: 500m
+    memory: 512Mi
+  requests:
+    cpu: 500m
+    memory: 512Mi
+
+nodeSelector: { }
+
+tolerations: [ ]
+
+affinity:
+  podAntiAffinity:
+    preferredDuringSchedulingIgnoredDuringExecution:
+      - weight: 100
+        podAffinityTerm:
+          labelSelector:
+            matchExpressions:
+              - key: app.kubernetes.io/name
+                operator: DoesNotExist
+          topologyKey: kubernetes.io/hostname
+
+livenessProbe:
+  failureThreshold: 3
+  initialDelaySeconds: 60
+  periodSeconds: 10
+  successThreshold: 1
+  timeoutSeconds: 1
+readinessProbe:
+  failureThreshold: 3
+  initialDelaySeconds: 60
+  periodSeconds: 10
+  successThreshold: 1
+  timeoutSeconds: 1
+
+ingress:
+  enabled: false
+  className: ""
+  annotations: {}
+  hosts: []
+  tls: []
+
+springprofile: ""
+
+healthCheck:
+  enabled: true
+
+datasource:
+  url: ""
+  username: ""
+  password: ""
+
+postgresql:
+  enabled: false
+  auth:
+    database:
+    password: ""
+    postgresPassword: ""
+  architecture: standalone
+  audit:
+    pgAuditLog: write, ddl
+    logLinePrefix: "%m %u %d "
+
+pgadmin4:
+  enabled: false
+  ingress:
+    enabled: false

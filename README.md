@@ -6,5 +6,9 @@ Single place for technology specific boilerplate used to speed up project setup
 
 [reference dir](./kotlin-spring-hexagonal)
 
+## Helm charts
+
+[reference dir](./charts)
+
 ## Licenses
 MIT - see [LICENSE](./LICENSE)
